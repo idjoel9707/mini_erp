@@ -1,0 +1,2583 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "AIVision",
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "host": "localhost:7000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "produces": [
+    "application/json",
+    "multipart/form-data"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Login User",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "password"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/login/google": {
+      "post": {
+        "summary": "Login User With Google",
+        "tags": [
+          "Authentication"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "email",
+                "google_id"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "google_id": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/register": {
+      "post": {
+        "summary": "Register User",
+        "tags": [
+          "Authentication"
+        ],
+        "consumes": "multipart/form-data",
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "nama",
+            "description": "Masukkan nama Anda",
+            "type": "string",
+            "required": true
+        },
+        {
+            "in": "formData",
+            "name": "email",
+            "description": "Masukkan email Anda",
+            "type": "string",
+            "required": true
+        },
+        {
+            "in": "formData",
+            "name": "password",
+            "description": "Masukkan password Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "tanggalLahir",
+            "description": "Masukkan tanggal lahir Anda",
+            "type": "string"
+        }, 
+        {
+            "in": "formData",
+            "name": "jenisKelamin",
+            "description": "Masukkan jenis kelamin Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "foto",
+            "description": "Masukkan foto Anda",
+            "type": "file"
+        },
+        {
+            "in": "formData",
+            "name": "alamat",
+            "description": "Masukkan alamat Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "posisi",
+            "description": "Masukkan posisi Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "supervisor",
+            "description": "Masukkan nama supervisor Anda",
+            "type": "string",
+            "required": true
+        },
+        {
+            "in": "formData",
+            "name": "tanggalBergabung",
+            "description": "Masukkan tanggal Anda bergabung",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "nomorSIM",
+            "description": "Masukkan nomorSIM Anda",
+            "type": "string"
+        }, 
+        {
+            "in": "formData",
+            "name": "nomorKontakDarurat",
+            "description": "Masukkan nomor kontak darurat Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "namaKontakDarurat",
+            "description": "Masukkan nama kontak darurat Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "statusKaryawan",
+            "description": "Masukkan status karyawan Anda",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "tanggalBerakhirKontrak",
+            "description": "Masukkan kapan kontrak Anda berakhir",
+            "type": "string"
+        },
+        {
+            "in": "formData",
+            "name": "divisi",
+            "description": "Masukkan divisi Anda",
+            "type": "string"
+        }
+        ],
+        
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get user",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get users",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "user id",
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "user name",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Add User",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "name",
+            "description": "input your name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "input your email",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "input your password",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "google_id",
+            "description": "input your google account",
+            "type": "string"
+          }, 
+          {
+            "in": "formData",
+            "name": "token_notification",
+            "description": "input your token",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "phone",
+            "description": "input your phone",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "point",
+            "description": "input your phone",
+            "type": "integer"
+          },
+          {
+            "in": "formData",
+            "name": "photo",
+            "description": "upload photo item",
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Update User",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "id",
+            "description": "input id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "description": "input your name",
+            "type": "string"
+            
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "description": "input your password",
+            "type": "string"
+            
+          },
+          {
+            "in": "formData",
+            "name": "email",
+            "description": "input your email",
+            "type": "string"
+            
+          },
+          {
+            "in": "formData",
+            "name": "google_id",
+            "description": "input your google account",
+            "type": "string"
+          }, 
+          {
+            "in": "formData",
+            "name": "token_notification",
+            "description": "input your token",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "phone",
+            "description": "input your phone",
+            "type": "string"
+            
+          },
+          {
+            "in": "formData",
+            "name": "point",
+            "description": "input your phone",
+            "type": "integer"
+            
+          },
+          {
+            "in": "formData",
+            "name": "photo",
+            "description": "upload photo item",
+            "type": "file"
+            
+            
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Delete User",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user parameter",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/page": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "List of users in page",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/forgot-password": {
+      "post": {
+        "summary": "Forgot Password",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "email"
+              ],
+              "properties": {
+                "email": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/users/password":{
+      "patch": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Change Password",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "password"
+              ],
+              "properties": {
+                "password": {
+                  "type": "string",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/topup": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Top up point",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "point"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "required": "true"
+                },
+                "point": {
+                  "type": "string",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Top up point",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id",
+                "userId"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "required": "true"
+                },
+                "userId": {
+                  "type": "integer",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/phone": {
+      "post": {
+        "summary": "Send OTP for phone verifying",
+        "tags": [
+          "Users"
+        ],
+        "consumes": "application/json",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "number",
+            "description": "input your phone number",
+            "schema": {
+              "type": "object",
+              "required": [
+                "number"
+              ],
+              "properties": {
+                "number": {
+                  "type": "string"
+                }
+              }            
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/verify/phone": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Verify phone number",
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+          "in": "body",
+            "name": "code",
+            "description": "User Credentials",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code"
+              ],
+              "properties": {
+                "code": {
+                  "type": "integer",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/items": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get items",
+        "tags": [
+          "Items"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "items id",
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "description": "items name",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "description": "items category",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Add Item",
+        "tags": [
+          "Items"
+        ],
+        "consumes": "multipart/form-data",
+        "parameters": [   
+          {
+            "in": "formData",
+            "name": "photo",
+            "description": "upload photo item",
+            "type": "file",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "description": "input item name",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "description": "input item price",
+            "type": "integer"
+          },
+          {
+            "in": "formData",
+            "name": "discount",
+            "description": "input item discount",
+            "type": "integer"
+          },
+          {
+            "in": "formData",
+            "name": "flashsale",
+            "description": "input flashsale",
+            "type": "integer"
+          }, 
+          {
+            "in": "formData",
+            "name": "alias",
+            "description": "input alias for item",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "qtyItem",
+            "description": "input quantity item",
+            "type": "integer"
+          }, 
+          {
+            "in": "formData",
+            "name": "item size",
+            "description": "input width, length, heigth of item",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "qtyRak",
+            "description": "input quantity item in Rak",
+            "type": "integer"
+          }, 
+          {
+            "in": "formData",
+            "name": "item's category",
+            "description": "category item",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Update Item",
+        "tags": [
+          "Items"
+        ],
+        "consumes": "multipart/form-data",
+        "parameters": [   
+          {
+            "in": "formData",
+            "name": "id",
+            "description": "input item id",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "description": "input item name",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "photo",
+            "description": "upload photo item",
+            "type": "file"
+          },
+          {
+            "in": "formData",
+            "name": "price",
+            "description": "input item price",
+            "type": "integer"
+          },
+          {
+            "in": "formData",
+            "name": "discount",
+            "description": "input item discount",
+            "type": "integer"
+          },
+          {
+            "in": "formData",
+            "name": "flashsale",
+            "description": "input flashsale",
+            "type": "integer"
+          }, 
+          {
+            "in": "formData",
+            "name": "alias",
+            "description": "input alias for item",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "qtyItem",
+            "description": "input quantity item",
+            "type": "integer"
+          }, 
+          {
+            "in": "formData",
+            "name": "item size",
+            "description": "input width, length, heigth of item",
+            "type": "string"
+          },
+          {
+            "in": "formData",
+            "name": "qtyRak",
+            "description": "input quantity item in Rak",
+            "type": "integer"
+          }, 
+          {
+            "in": "formData",
+            "name": "item's category",
+            "description": "category item",
+            "type": "string"
+          }
+      ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Delete Item",
+        "tags": [
+          "Items"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "user parameter",
+            "schema": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/items/page": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "List of items",
+        "tags": [
+          "Items"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit per page",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/newitems": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get newest items",
+        "tags": [
+          "Items"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/special": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get special items this week",
+        "tags": [
+          "Items"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/trending": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get trending items this week",
+        "tags": [
+          "Items"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/payment": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Post Payment",
+        "tags": [
+          "Payment"
+        ],
+        "consumes": "application/json",
+        "parameters": [   
+          {
+          "in": "body",
+          "name": "payment",
+          "description": "Payment",
+          "schema": {
+            "type": "object",
+            "required": [
+              "userId",
+              "method",
+              "total_pay",
+              "items"
+            ],
+            "properties": {
+              "method": {
+                "type": "integer"
+              },
+              "status": {
+                "type": "string"
+              }, 
+              "items": {
+                "type": "array",
+                "items": {
+                  
+                  "type": "object",
+                  "properties": {
+                    "id" : {
+                      "type": "integer"
+                    },
+                    "quantity" : {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get payments",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "id",
+            "type": "integer"
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "description": "userId in payment",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/payment/page": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "List of payments in page",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/paidItem": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get items already paid",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "payment_item id",
+            "type": "integer"
+          },
+          {
+            "name": "paymentId",
+            "in": "query",
+            "required": false,
+            "description": "paymentId in item",
+            "type": "integer"
+          },
+          {
+            "name": "itemId",
+            "in": "query",
+            "required": false,
+            "description": "itemId",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/paid": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get history of puchasing items",
+        "tags": [
+          "Payment"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/point": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get history of top-up point",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/purchasing/point": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Paging of top-up point",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/purchasing/item": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Paging of purchasing item histories",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/admin/purchasing/item": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Paging of purchasing item histories",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "required": false,
+            "description": "id user",
+            "type": "integer"
+          },{
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/admin/purchasing/point": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Paging of purchasing point histories",
+        "tags": [
+          "Payment"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "required": false,
+            "description": "id user",
+            "type": "integer"
+          },{
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          
+          }
+        }
+      }
+    },
+    "/role": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get all roles",
+        "tags": [
+          "Authorize"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "user id",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Post a role",
+        "tags": [
+          "Authorize"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "role",
+            "description": "Name of role",
+            "schema": {
+              "type": "object",
+              "required": [
+                "role"
+              ],
+              "properties": {
+                "role": {
+                  "type": "string",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Delete a role",
+        "tags": [
+          "Authorize"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "role",
+            "description": "Role's id",
+            "schema": {
+              "type": "object",
+              "required": [
+                "role"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/role": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Add a role to a user or Edit a role to a user",
+        "tags": [
+          "Authorize"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "role",
+            "description": "Name of role",
+            "schema": {
+              "type": "object",
+              "required": [
+                "role"
+              ],
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "required": "true"
+                },
+                "role": {
+                  "type": "integer",
+                  "required": "true"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/invoice": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Post Payment",
+        "tags": [
+          "Payment Gateway"
+        ],
+        "consumes": "application/json",
+        "parameters": [   
+          {
+          "in": "body",
+          "name": "payment",
+          "description": "Payment",
+          "schema": {
+            "type": "object",
+            "required": [
+              "paymentId"
+            ],
+            "properties": {
+              "paymentId": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ewallets/ovo": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Post Payment Gateway - OVO",
+        "tags": [
+          "Payment Gateway"
+        ],
+        "consumes": "application/json",
+        "parameters": [   
+          {
+          "in": "body",
+          "name": "payment",
+          "description": "Payment",
+          "schema": {
+            "type": "object",
+            "required": [
+              "paymentId"
+            ],
+            "properties": {
+              "paymentId": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/ewallets/dana": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Post Payment Gateway - DANA",
+        "tags": [
+          "Payment Gateway"
+        ],
+        "consumes": "application/json",
+        "parameters": [   
+          {
+          "in": "body",
+          "name": "payment",
+          "description": "Payment",
+          "schema": {
+            "type": "object",
+            "required": [
+              "paymentId"
+            ],
+            "properties": {
+              "paymentId": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/chat/conversation": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Call all coversation",
+        "tags": [
+          "Help Chat"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "to (recipient)",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/chat/message": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Call all message in a conversation",
+        "tags": [
+          "Help Chat"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "to (recipient)",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/chat/delete": {
+      "delete": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Delete chat conversations",
+        "tags": [
+          "Help Chat"
+        ],
+        "consumes": "application/json",
+        "parameters": [   
+          {
+          "in": "body",
+          "name": "delete chat",
+          "description": "Help Chat",
+          "schema": {
+            "type": "object",
+            "required": [
+              "id",
+              "sender_id"
+            ],
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "sender_id": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/chat/conversation/id": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get conversation by its id",
+        "tags": [
+          "Help Chat"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "id (conversation id)",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/dashboard/item": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get populer item",
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "item id",
+            "in": "query",
+            "required": false,
+            "description": "id (item)",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/dashboard/user": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get user",
+        "tags": [
+          "Dashboard"
+        ],
+        "parameters": [
+          {
+            "name": "userid",
+            "in": "query",
+            "required": false,
+            "description": "payment userid",
+            "type": "integer"
+          },
+          {
+            "name": "event",
+            "in": "query",
+            "required": true,
+            "description": "harian/mingguan/bulanan/tahunan",
+            "type": "string"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": true,
+            "description": "limit per page",
+            "type": "integer"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": true,
+            "description": "page",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/dashboard": {
+      "get": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Get populer item",
+        "tags": [
+          "Dashboard"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/admin/refund": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Approving Refund",
+        "tags": [
+          "Refund"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "Refund",
+            "schema": {
+              "type": "object",
+              "required": [
+                "paymentId",
+                "itemId"
+              ],
+              "properties": {
+                "paymentId": {
+                  "type": "integer"
+                },
+                "itemId": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/user/refund": {
+      "post": {
+        "security": [{
+          "Bearer": []
+        }],
+        "summary": "Requesting Refund",
+        "tags": [
+          "Refund"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "user",
+            "description": "Refund",
+            "schema": {
+              "type": "object",
+              "required": [
+                "paymentId",
+                "itemId"
+              ],
+              "properties": {
+                "paymentId": {
+                  "type": "integer"
+                },
+                "itemId": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "required": [
+        "id",
+        "name",
+        "email",
+        "password",
+        "photo",
+        "role",
+        "phone",
+        "google_id",
+        "token_notification",
+        "point"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        },
+        "google_id": {
+          "type": "string"
+        },
+        "token_notification": {
+          "type": "string"
+        },
+        "point": {
+          "type": "integer"
+        }
+      }
+    },
+    "Item": {
+      "required": [
+        "id",
+        "name",
+        "price",
+        "photo",
+        "discount",
+        "flashsale",
+        "alias"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "type": "integer"
+        },
+        "photo": {
+          "type": "string"
+        },
+        "discount": {
+          "type": "integer"
+        },
+        "flashsale": {
+          "type": "boolean"
+        },
+        "alias": {
+          "type": "string"
+        }
+      }
+    },
+    "Payment": {
+      "required": [
+        "id",
+        "userId",
+        "method",
+        "total_pay",
+        
+        "items"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "userId": {
+          "type": "integer"
+        },
+        "method": {
+          "type": "integer"
+        },
+        "total_pay": {
+          "type": "integer"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["paid", "pending", "unpaid"]
+        },
+        "items": {
+          "type": "array",
+          "items": {
+                  
+            "type": "object",
+            "properties": {
+              "id" : {
+                "type": "integer"
+              },
+              "name" : {
+                "type": "string"
+              },
+              "price" : {
+                "type": "integer"
+              },
+              "quantity" : {
+                "type": "integer"
+              },
+              "discount" : {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
