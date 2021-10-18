@@ -24,8 +24,6 @@ class Attend {
             const geoApi = await axios({
                 method: 'post',
                 url: `https://www.googleapis.com/geolocation/v1/geolocate?key=${GEO_API}`,
-                // data: data,
-                // headers: headers
             })
             const attend = await Attendance.create({
                 karyawan: userId,
